@@ -1,1 +1,6 @@
 # cnew-maquinalavar2
+
+Implementação de um protótipo de máquina de lavar controlada remotamente por bluetooth, microprocessada com ARM Cortex-M0+, usando C++.
+
+O sistema oferecerá ao usuário final dois tipos de lavagens programadas na RAM: LD (Dia-a-Dia) e LE (Especial), na qual se diferem no tempo e na ordem de execução das etapas.
+
