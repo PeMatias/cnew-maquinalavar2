@@ -12,3 +12,5 @@ O projeto está sendo desenvolvido em duas sprints:
   C2 - Módulo Controle
   ```
   
+ ![Alt Text](https://github.com/PeMatias/cnew-maquinalavar2/blob/master/DiagramaBlocos.PNG)
+ ![Alt Text](https://github.com/PeMatias/cnew-maquinalavar2/blob/master/legendaDiagramaBlocos.PNG)
