@@ -13,15 +13,18 @@
 /**
  * @param valor
  */
-DownCounter::DownCounter(int valor) {
-
+DownCounter::DownCounter(int valor)
+{
+	this->module = valor;
+	this->data = '0' +( valor -1) ;
 }
 
 /**
  * @return void
  */
-void DownCounter::clearCounter() {
-    return;
+void DownCounter::clearCounter()
+{
+	this->data = '0';
 }
 
 /**
@@ -30,20 +33,34 @@ void DownCounter::clearCounter() {
  * @param enable
  * @return void
  */
-void DownCounter::decCounter(bool carryIn, bool clk, bool enable) {
-    return;
+void DownCounter::decCounter(bool carryIn, bool clk, bool enable)
+{
+    if(carryIn == 1 && clk == 1 && enable == 1 && this->data > '0')
+    {
+    	this->data--;
+    }
+    else
+    {
+    	this->data = '0' + (this->module -1);
+    }
 }
 
 /**
  * @return char
  */
-char DownCounter::readCounter() {
-    return '0';
+char DownCounter::readCounter()
+{
+    return this->data;
 }
 
 /**
  * @return bool
  */
-bool DownCounter::isCarryOut() {
-    return false;
+bool DownCounter::isCarryOut(bool enable)
+{
+	if(enable == 1  and this->data == '0')
+	{
+		return true;
+	}
+	return false;
 }

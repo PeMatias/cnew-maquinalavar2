@@ -27,7 +27,7 @@ public:
     
 	char readCounter();
     
-	bool isCarryOut();
+	bool isCarryOut(bool enable);
 private: 
     char data;
     int module;
