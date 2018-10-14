@@ -33,7 +33,7 @@ Lista de blocos funcionais que já foram implementados ou que estão sendo imple
 - [X] Contador Decresencente
 - [ ] Contador Up/Down
 - [X] Divisor de Frequência
-- [ ] Lógica NL
+- [ ] Lógica NL - Comparador
 - [ ] Debounce
 - [ ] Lógica On/Off
 - [ ] Monoestável
