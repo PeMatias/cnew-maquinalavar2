@@ -39,7 +39,8 @@ Lista de blocos funcionais que já foram implementados ou que estão sendo imple
 - [ ] Monoestável
 ## C1 - Interfaces de Hardware
 
-Sãoclientes de instaciação dos Controladores de Hardware:
+Sãoc lientes de instaciação dos Controladores de Hardware.
+
 Lista de interfaces de hardware que já foram implementados ou que ainda estão sendo trabalhados:
 
 - [x] Botão
@@ -50,7 +51,8 @@ Lista de interfaces de hardware que já foram implementados ou que ainda estão 
 - [ ] Oscilador
 ## C1 - Controladores de Hardware
 
-São utilizados pelos blocos funcionais para acessar os Periféricos
+São utilizados pelos blocos funcionais para acessar os Periféricos.
+
 Lista de controladores de hardware que já foram implementados ou que ainda estão sendo trabalhados:
 
 - [x] mkl_GPIOPort
