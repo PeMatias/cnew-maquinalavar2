@@ -19,6 +19,11 @@ public:
 	bool isOn();
     
 	bool isOff();
+	/*!
+		 * Método para realizar a leitura do estado do botão: true ou false.
+	 */
+	bool read();
+
 private: 
     mkl_GPIOPort port;
 };

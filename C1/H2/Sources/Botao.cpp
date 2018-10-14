@@ -25,12 +25,20 @@ Botao::Botao(gpio_Pin pin) {
  */
 bool Botao::isOn()
 {
+	if(	this->port.readBit()  == 0) return true;
     return false;
 }
 
 /**
  * @return bool
  */
-bool Botao::isOff() {
-    return false;
+bool Botao::isOff()
+{
+	if(	this->port.readBit() == 1) return true;
+	return false;
+}
+
+bool Botao::read()
+{
+	return port.readBit();
 }

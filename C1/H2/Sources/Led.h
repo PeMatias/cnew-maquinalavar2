@@ -14,11 +14,16 @@ public:
 /**
  * @param pin
  */
-	Led(gpio_Pin pin);
-    
+	/*!
+	 * Construtor padrão da classe (apaga o LED).
+	 */
+	Led(gpio_Pin);
+	/*!
+	 * Métodos para mudar o estado do LED.
+	 */
 	void setOn();
-    
 	void setOff();
+
 private: 
     mkl_GPIOPort port;
 };

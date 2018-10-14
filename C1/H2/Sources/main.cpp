@@ -31,33 +31,49 @@
 #include "MKL25Z4.h"
 #include "DownCounterProgramable.h"
 #include "DivFreq.h"
+#include "Chave2.h"
+#include "Botao2.h"
+#include "Oscilador.h"
 
 using namespace std;
+Chave2 enTE(gpio_PTA2); // Chave enTE
+Botao2 wrTE(gpio_PTA1); // Chave wrTE
+Oscilador clock10h; // Clock de 0.1ms 10Hz
+DivFreq clock1h; //Divisor de Frequencia 1H
+DownCounterProgramable TEuni(10); //Temporizador - Unidade
+DownCounterProgramable TEdez(10); //Temporizador - Dezena
+char dtRI[2] = {'1','7'};
 
+void esperaProgramarContagem()
+{
+	while(wrTE.isOff()) // Aguarda o botão ser pressionado
+	{
+		TEdez.writeData(true,'1');
+	    TEuni.writeData(true,'7');
+	}
+}
+void esperaHabilitarContagem()
+{
+	 while(TEuni.isCarryOut(1)==1 && TEdez.isCarryOut(1) == 1) // Aguarda o fim da contagem
+	 {
+		//(carryIn,clk,enTE)
+		clock1h.decCounter(1					, clock10h.clock() 					,1);
+		TEdez.decCounter(TEuni.isCarryOut(1)	,clock1h.isCarryOut(enTE.isOn())	,enTE.isOn());
+		TEuni.decCounter(1						,clock1h.isCarryOut(enTE.isOn())	,enTE.isOn());
+
+	}
+}
 int main()
 {
-    bool chEnable = true;
-    bool clock100h = true;
-    DownCounter clock1h(10);
-    DownCounterProgramable TEuni(10);
-    DownCounterProgramable TEdez(10);
-    TEdez.writeData(true,'1');
-    TEuni.writeData(true,'7');
-    //printf("Programando TE para 17s data= %c%c\n",TEdez.readCounter(), TEuni.readCounter());
-    int i = 0;
-    while(i<100)
-    {   //(carryIn,clk,enable)
-        clock1h.decCounter(1,clock100h,1);
-        TEdez.decCounter(TEuni.isCarryOut(1),clock1h.isCarryOut(1),chEnable);
-        TEuni.decCounter(1,clock1h.isCarryOut(1),chEnable);
+	//*((volatile unsigned long *) (0xE000E100)) = 0x4; // Disable interrupt #2
 
-        //if(clock1h.readCounter() != '9') printf("_ ");
-        //else printf("— Contagem %c%cs\n",TEdez.readCounter(), TEuni.readCounter());
-        i++;
+    while(true)
+    {
+    	esperaProgramarContagem();
+    	esperaHabilitarContagem();
 
-        if(TEuni.isCarryOut(1)==1 && TEdez.isCarryOut(1) == 1) break;
     }
-    //cout<<"Fim do teste";
+
 
     return 0;
 }

@@ -16,19 +16,24 @@
 Chave::Chave(gpio_Pin pin)
 {
 	  this->port.setPortMode(gpio_input);
-	  this->port.setPullResistor(gpio_pullUpResistor);
+	  //this->port.setPullResistor(gpio_pullUpResistor);
 }
 
 /**
  * @return bool
  */
 bool Chave::isOn() {
-    return false;
+	if(	this->port.readBit()  == 1) return true;
+	return false;
 }
 
 /**
  * @return bool
  */
 bool Chave::isOff() {
-    return false;
+	if(	this->port.readBit() == 0) return true;
+	return false;
 }
+
+
+
