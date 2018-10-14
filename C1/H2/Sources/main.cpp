@@ -48,8 +48,8 @@ void esperaProgramarContagem()
 {
 	while(wrTE.isOff()) // Aguarda o botão ser pressionado
 	{
-		TEdez.writeData(true,'1');
-	    TEuni.writeData(true,'7');
+		TEdez.writeData(true,dtRI[0]);
+	    TEuni.writeData(true,dtRI[1]);
 	}
 }
 void esperaHabilitarContagem()
