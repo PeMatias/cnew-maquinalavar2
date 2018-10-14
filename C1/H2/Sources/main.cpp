@@ -29,21 +29,35 @@
  */
 
 #include "MKL25Z4.h"
+#include "DownCounterProgramable.h"
+#include "DivFreq.h"
 
-static int i = 0;
+using namespace std;
 
-int main(void)
+int main()
 {
+    bool chEnable = true;
+    bool clock100h = true;
+    DownCounter clock1h(10);
+    DownCounterProgramable TEuni(10);
+    DownCounterProgramable TEdez(10);
+    TEdez.writeData(true,'1');
+    TEuni.writeData(true,'7');
+    //printf("Programando TE para 17s data= %c%c\n",TEdez.readCounter(), TEuni.readCounter());
+    int i = 0;
+    while(i<100)
+    {   //(carryIn,clk,enable)
+        clock1h.decCounter(1,clock100h,1);
+        TEdez.decCounter(TEuni.isCarryOut(1),clock1h.isCarryOut(1),chEnable);
+        TEuni.decCounter(1,clock1h.isCarryOut(1),chEnable);
 
-    /* Write your code here */
-
-    /* This for loop should be replaced. By default this loop allows a single stepping. */
-    for (;;) {
+        //if(clock1h.readCounter() != '9') printf("_ ");
+        //else printf("— Contagem %c%cs\n",TEdez.readCounter(), TEuni.readCounter());
         i++;
+
+        if(TEuni.isCarryOut(1)==1 && TEdez.isCarryOut(1) == 1) break;
     }
-    /* Never leave main */
+    //cout<<"Fim do teste";
+
     return 0;
 }
-////////////////////////////////////////////////////////////////////////////////
-// EOF
-////////////////////////////////////////////////////////////////////////////////

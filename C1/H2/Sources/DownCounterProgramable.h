@@ -20,7 +20,9 @@ public:
 /**
  * @param writeTE
  */
-	void writeData(bool writeTE);
+	void writeData(bool writeTE, char valor);
+
+
 };
 
 #endif //_DOWNCOUNTERPROGRAMABLE_H

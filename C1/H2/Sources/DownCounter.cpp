@@ -35,14 +35,12 @@ void DownCounter::clearCounter()
  */
 void DownCounter::decCounter(bool carryIn, bool clk, bool enable)
 {
-    if(carryIn == 1 && clk == 1 && enable == 1 && this->data > '0')
+    if(carryIn == 1 && clk == 1 && enable == 1)
     {
-    	this->data--;
+        if(this->data > '0') this->data--;
+        else 	            this->data = '0' + (this->module -1);
     }
-    else
-    {
-    	this->data = '0' + (this->module -1);
-    }
+
 }
 
 /**
@@ -58,7 +56,7 @@ char DownCounter::readCounter()
  */
 bool DownCounter::isCarryOut(bool enable)
 {
-	if(enable == 1  and this->data == '0')
+	if(enable == 1  and readCounter() == '0')
 	{
 		return true;
 	}
