@@ -34,23 +34,38 @@
 #include "Chave2.h"
 #include "Botao2.h"
 #include "Oscilador.h"
+#include "mkl_PIT.h"
+#include "Led.h"
+
 
 using namespace std;
+/*
 Chave2 enTE(gpio_PTA2); // Chave enTE
-Botao2 wrTE(gpio_PTA1); // Chave wrTE
+
+Botao2 wrTE(gpio_PTA1); // Botao wrTE
 Oscilador clock10h; // Clock de 0.1ms 10Hz
 DivFreq clock1h; //Divisor de Frequencia 1H
+Led onTE(gpio_PTB18);
 DownCounterProgramable TEuni(10); //Temporizador - Unidade
 DownCounterProgramable TEdez(10); //Temporizador - Dezena
 char dtRI[2] = {'1','7'};
 
+extern "C" {
+  void PIT_IRQHandler(void) {
+    clock10h.pit.clearInterruptFlag();
+    onTE.setOn();
+  }
+}
 void esperaProgramarContagem()
 {
-	while(wrTE.isOff()) // Aguarda o botão ser pressionado
+	while(wrTE.isOff()) // Aguarda o botÃ£o ser pressionado
 	{
 		TEdez.writeData(true,dtRI[0]);
 	    TEuni.writeData(true,dtRI[1]);
+	    break;
 	}
+	TEdez.writeData(true,dtRI[0]);
+	TEuni.writeData(true,dtRI[1]);
 }
 void esperaHabilitarContagem()
 {
@@ -69,11 +84,67 @@ int main()
 
     while(true)
     {
+    	//onTE.setOn();
+
     	esperaProgramarContagem();
     	esperaHabilitarContagem();
 
     }
 
-
     return 0;
+}*/
+////////////////////////////////////////////////////////////////////////////////////
+////Teste do pit
+DivFreq clock1h; //Divisor de Frequencia 1H
+
+mkl_PITInterruptInterrupt pit(PIT_Ch0);
+
+
+/*!
+ *  Definiï¿½ï¿½o do objeto led a ser usado.
+ */
+Led led(gpio_PTB18);
+
+
+/*!
+ *  Configuraï¿½ï¿½o dos objetos PIT e Led
+ */
+void setup() {
+  //led.init();
+  pit.enablePeripheralModule();
+  //pit.setPeriod(0x30D40);
+  pit.setPeriod(0xF4240);
+}
+
+
+/*!
+ *  Definiï¿½ï¿½o da rotina de interrupï¿½ï¿½o do PIT
+ */
+extern "C" {
+  void PIT_IRQHandler(void) {
+    pit.clearInterruptFlag();
+	clock1h.decCounter(1,1.,1);
+	if(clock1h.isCarryOut(1)) led.setOn();
+	else led.setOff();
+
+
+  }
+}
+
+/*!
+ *  Configuraï¿½ï¿½o dos objetos PIT e Led
+ */
+int main(void) {
+  setup();
+  pit.resetCounter();
+  pit.enableTimer();
+  //led.invertCurrentState();
+  pit.enableInterruptRequests();
+  while (1) {
+    pit.waitInterruptFlag();
+  }
+
+  pit.disableInterruptRequests();
+
+  return 0;
 }

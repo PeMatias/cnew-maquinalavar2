@@ -13,7 +13,7 @@
 /**
  * @param pin
  */
-Chave::Chave(gpio_Pin pin)
+Chave::Chave(gpio_Pin pin): port(pin)
 {
 	  this->port.setPortMode(gpio_input);
 	  //this->port.setPullResistor(gpio_pullUpResistor);

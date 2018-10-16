@@ -14,7 +14,8 @@
 /**
  * @param pin
  */
-Botao::Botao(gpio_Pin pin) {
+Botao::Botao(gpio_Pin pin):port(pin)
+{
 	  this->port.setPortMode(gpio_input);
 	  this->port.setPullResistor(gpio_pullUpResistor);//Sempre retorna o valor zero
 

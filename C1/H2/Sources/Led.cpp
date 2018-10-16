@@ -13,10 +13,10 @@
 /**
  * @param pin
  */
-Led::Led(gpio_Pin pin)
+Led::Led(gpio_Pin pin):port(pin)
 {
-	this->port.setPortMode(gpio_output);
-	this->port.writeBit(0); //!< Apaga o LED.
+	port.setPortMode(gpio_output);
+	port.writeBit(1); //!< Apaga o LED.
 
 }
 
@@ -25,7 +25,7 @@ Led::Led(gpio_Pin pin)
  */
 void Led::setOn()
 {
-	this->port.writeBit(1); //!< Acende o LED.
+	port.writeBit(0); //!< Acende o LED.
 
 }
 
@@ -34,6 +34,6 @@ void Led::setOn()
  */
 void Led::setOff()
 {
-	this->port.writeBit(0);  //!< Apaga o LED.
+	port.writeBit(1);  //!< Apaga o LED.
 
 }

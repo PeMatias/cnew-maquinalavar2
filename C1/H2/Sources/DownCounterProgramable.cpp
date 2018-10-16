@@ -9,7 +9,6 @@
  * DownCounterProgramable implementation
  */
 
-
 /**
  * @param int valor
  */
@@ -29,5 +28,3 @@ void DownCounterProgramable::writeData(bool writeTE, char valor)
     	this->data = valor;
     }
 }
-
-

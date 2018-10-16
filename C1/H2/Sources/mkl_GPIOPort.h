@@ -58,7 +58,7 @@ class mkl_GPIOPort : public mkl_GPIO {
   /*!
    * Construtor padrão da classe.
    */
-  explicit mkl_GPIOPort(gpio_Pin pin = gpio_PTA1);
+  explicit mkl_GPIOPort(gpio_Pin pin);
 };
 
 #endif  //  MKL_GPIOPORT_H_
