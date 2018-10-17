@@ -22,6 +22,9 @@ public:
  */
 	void writeData(bool writeTE, char valor);
 
+	//void decCounter(bool carryIn, bool clk);
+
+
 
 };
 

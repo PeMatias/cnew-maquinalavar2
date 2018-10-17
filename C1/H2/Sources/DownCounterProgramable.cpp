@@ -15,6 +15,7 @@
 DownCounterProgramable::DownCounterProgramable(int valor) : DownCounter(valor)
 {
     this->data = '0';
+    this->enable = false;
 }
 
 /**
@@ -27,4 +28,12 @@ void DownCounterProgramable::writeData(bool writeTE, char valor)
     {
     	this->data = valor;
     }
-}
+}/*
+void DownCounterProgramable::decCounter(bool carryIn, bool clk)
+{
+    if(carryIn == 1 && clk == 1 && this->enable)
+    {
+        if(this->data > '0') this->data--;
+    }
+
+}*/

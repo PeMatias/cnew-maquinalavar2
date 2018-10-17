@@ -35,116 +35,127 @@
 #include "Botao2.h"
 #include "Oscilador.h"
 #include "mkl_PIT.h"
-#include "Led.h"
+#include "Led2.h"
 
 
 using namespace std;
-/*
-Chave2 enTE(gpio_PTA2); // Chave enTE
 
+Chave2 enTE(gpio_PTA2); // Chave enTE
 Botao2 wrTE(gpio_PTA1); // Botao wrTE
 Oscilador clock10h; // Clock de 0.1ms 10Hz
 DivFreq clock1h; //Divisor de Frequencia 1H
-Led onTE(gpio_PTB18);
+Led2 onTE(gpio_PTB18);
+Led2 ledClock(gpio_PTB19);
 DownCounterProgramable TEuni(10); //Temporizador - Unidade
 DownCounterProgramable TEdez(10); //Temporizador - Dezena
 char dtRI[2] = {'1','7'};
 
-extern "C" {
-  void PIT_IRQHandler(void) {
-    clock10h.pit.clearInterruptFlag();
-    onTE.setOn();
-  }
-}
-void esperaProgramarContagem()
-{
-	while(wrTE.isOff()) // Aguarda o botão ser pressionado
-	{
-		TEdez.writeData(true,dtRI[0]);
-	    TEuni.writeData(true,dtRI[1]);
-	    break;
-	}
-	TEdez.writeData(true,dtRI[0]);
-	TEuni.writeData(true,dtRI[1]);
-}
-void esperaHabilitarContagem()
-{
-	 while(TEuni.isCarryOut(1)==1 && TEdez.isCarryOut(1) == 1) // Aguarda o fim da contagem
-	 {
-		//(carryIn,clk,enTE)
-		clock1h.decCounter(1					, clock10h.clock() 					,1);
-		TEdez.decCounter(TEuni.isCarryOut(1)	,clock1h.isCarryOut(enTE.isOn())	,enTE.isOn());
-		TEuni.decCounter(1						,clock1h.isCarryOut(enTE.isOn())	,enTE.isOn());
 
+extern "C" {
+  void PIT_IRQHandler(void)
+  {
+    clock10h.pit.clearInterruptFlag();
+    //Habilita clock de 1Hz
+    clock1h.enable = true;
+	clock1h.decCounter(1,1);
+	if(clock1h.isCarryOut()) ledClock.setOn();
+	else ledClock.setOff();
+
+	//Verifica a botão e programa os contadores
+	if(wrTE.isOn())
+	{
+		TEdez.writeData(true,'1');
+		TEuni.writeData(true,'5');
 	}
+
+	//Verificar o enable count
+	TEdez.enable = enTE.isOn();
+	TEuni.enable = enTE.isOn();
+
+	//Contagem Habilitada
+	TEdez.decCounter(TEuni.isCarryOut()	,clock1h.isCarryOut());
+	TEuni.decCounter(1					,clock1h.isCarryOut());
+	if(TEuni.isCarryOut()&& TEdez.isCarryOut())
+	{
+		onTE.setOn();
+		TEdez.clearCounter();
+		TEuni.clearCounter();
+	}
+	else onTE.setOff();
+
+
+  }
 }
 int main()
 {
 	//*((volatile unsigned long *) (0xE000E100)) = 0x4; // Disable interrupt #2
 
-    while(true)
-    {
-    	//onTE.setOn();
+	  clock10h.pit.enableInterruptRequests();
+	  while (1)
+	  {
+		  clock10h.pit.waitInterruptFlag();
+		  //esperaProgramarContagem();
+	  }
+	  clock10h.pit.disableInterruptRequests();
 
-    	esperaProgramarContagem();
-    	esperaHabilitarContagem();
-
-    }
 
     return 0;
-}*/
+}
 ////////////////////////////////////////////////////////////////////////////////////
 ////Teste do pit
-DivFreq clock1h; //Divisor de Frequencia 1H
 
-mkl_PITInterruptInterrupt pit(PIT_Ch0);
+//DivFreq clock1h; //Divisor de Frequencia 1H
+//Oscilador clock10h;
+//mkl_PITInterruptInterrupt pit(PIT_Ch0);
 
 
-/*!
- *  Defini��o do objeto led a ser usado.
- */
-Led led(gpio_PTB18);
 
 
 /*!
  *  Configura��o dos objetos PIT e Led
  */
-void setup() {
-  //led.init();
+/*void setup() {
   pit.enablePeripheralModule();
-  //pit.setPeriod(0x30D40);
-  pit.setPeriod(0xF4240);
-}
+  pit.setPeriod(1000000);//10ms
+}*/
 
 
 /*!
  *  Defini��o da rotina de interrup��o do PIT
- */
+ *//*
 extern "C" {
   void PIT_IRQHandler(void) {
-    pit.clearInterruptFlag();
-	clock1h.decCounter(1,1.,1);
+    clock10h.pit.clearInterruptFlag();
+	clock1h.decCounter(1,1,1);
 	if(clock1h.isCarryOut(1)) led.setOn();
 	else led.setOff();
 
 
   }
-}
+}*/
 
 /*!
  *  Configura��o dos objetos PIT e Led
  */
-int main(void) {
-  setup();
+//Botao2 enTE(gpio_PTA1); // Chave enTE,
+//Led2 onTE(gpio_PTB18);
+
+//int main(void) {
+  /*setup();
   pit.resetCounter();
   pit.enableTimer();
   //led.invertCurrentState();
-  pit.enableInterruptRequests();
-  while (1) {
-    pit.waitInterruptFlag();
+
+  clock10h.pit.enableInterruptRequests();
+  while (1)
+  {
+	  clock10h.pit.waitInterruptFlag();
   }
-
-  pit.disableInterruptRequests();
-
+  clock10h.pit.disableInterruptRequests();*/
+	/*while(1)
+	{
+		if(enTE.isOn() ) onTE.setOn();
+		else onTE.setOff();
+	}
   return 0;
-}
+}*/

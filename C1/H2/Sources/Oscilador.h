@@ -16,7 +16,6 @@ public:
     
 	bool clock();
 
-public:
 	mkl_PITInterruptInterrupt pit = mkl_PITInterruptInterrupt(PIT_Ch0);
 };
 

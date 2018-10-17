@@ -23,11 +23,18 @@ public:
  * @param clk
  * @param enable
  */
-	void decCounter(bool carryIn, bool clk, bool enable);
+	void decCounter(bool carryIn, bool clk);
     
 	char readCounter();
     
-	bool isCarryOut(bool enable);
+	bool isCarryOut();
+
+	bool isEnable();
+
+	void setEnable(bool valor);
+
+    bool enable;
+
 protected:
     char data;
     int module;
