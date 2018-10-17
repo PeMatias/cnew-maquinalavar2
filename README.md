@@ -28,20 +28,34 @@ Lista de blocos funcionais que já foram implementados ou que estão sendo imple
 
 - [ ] Controlador LCD
 - [ ] Controlador Painel
-- [ ] Decodificador BCD-ASCII
-- [ ] Contador Decresencente
+- [X] Decodificador BCD-ASCII
+- [X] Decodificador BCD-STRING
+- [X] Contador Decresencente
 - [ ] Contador Up/Down
-- [ ] Divisor de Frequência
-- [ ] Lógica NL
+- [X] Divisor de Frequência
+- [ ] Lógica NL - Comparador
 - [ ] Debounce
 - [ ] Lógica On/Off
 - [ ] Monoestável
+## C1 - Interfaces de Hardware
+
+Sãoc lientes de instaciação dos Controladores de Hardware.
+
+Lista de interfaces de hardware que já foram implementados ou que ainda estão sendo trabalhados:
+
+- [x] Botão
+- [x] Led
+- [x] Chave
+- [X] LCD
+- [X] Buzzer
+- [ ] Oscilador
 ## C1 - Controladores de Hardware
 
-São utilizados pelos blocos funcionais para acessar os Periféricos
+São utilizados pelos blocos funcionais para acessar os Periféricos.
+
 Lista de controladores de hardware que já foram implementados ou que ainda estão sendo trabalhados:
 
 - [x] mkl_GPIOPort
 - [x] mkl_TPMDelay
 - [x] mkl_PITPeriodicInterrupt
-- [ ] mkl_LCDI2C
+- [X] mkl_LCDI2C
