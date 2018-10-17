@@ -48,7 +48,6 @@ Led2 onTE(gpio_PTB18);
 Led2 ledClock(gpio_PTB19);
 DownCounterProgramable TEuni(10); //Temporizador - Unidade
 DownCounterProgramable TEdez(10); //Temporizador - Dezena
-char dtRI[2] = {'1','7'};
 
 
 extern "C" {
@@ -101,61 +100,4 @@ int main()
 
     return 0;
 }
-////////////////////////////////////////////////////////////////////////////////////
-////Teste do pit
 
-//DivFreq clock1h; //Divisor de Frequencia 1H
-//Oscilador clock10h;
-//mkl_PITInterruptInterrupt pit(PIT_Ch0);
-
-
-
-
-/*!
- *  Configura��o dos objetos PIT e Led
- */
-/*void setup() {
-  pit.enablePeripheralModule();
-  pit.setPeriod(1000000);//10ms
-}*/
-
-
-/*!
- *  Defini��o da rotina de interrup��o do PIT
- *//*
-extern "C" {
-  void PIT_IRQHandler(void) {
-    clock10h.pit.clearInterruptFlag();
-	clock1h.decCounter(1,1,1);
-	if(clock1h.isCarryOut(1)) led.setOn();
-	else led.setOff();
-
-
-  }
-}*/
-
-/*!
- *  Configura��o dos objetos PIT e Led
- */
-//Botao2 enTE(gpio_PTA1); // Chave enTE,
-//Led2 onTE(gpio_PTB18);
-
-//int main(void) {
-  /*setup();
-  pit.resetCounter();
-  pit.enableTimer();
-  //led.invertCurrentState();
-
-  clock10h.pit.enableInterruptRequests();
-  while (1)
-  {
-	  clock10h.pit.waitInterruptFlag();
-  }
-  clock10h.pit.disableInterruptRequests();*/
-	/*while(1)
-	{
-		if(enTE.isOn() ) onTE.setOn();
-		else onTE.setOff();
-	}
-  return 0;
-}*/
