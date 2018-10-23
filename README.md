@@ -72,7 +72,7 @@ Lista de dispositivos externos de hardware que foram implementados na Caminhada 
 
 ## C2 - Controladores de Hardware
 
-São utilizados pelos blocos funcionais para controlar os Periféricos de C1.
+São utilizados pelos blocos funcionais para controlar os Periféricos de C2.
 
 Lista de controladores de hardware que foram utilizados do framework:
 
