@@ -26,17 +26,16 @@ Os blocos funcionais são aqueles que compõem a classe digital do sistema no n�
 
 Lista de blocos funcionais que já foram implementados ou que estão sendo implementados na caminhada C1 :
 
-- [ ] Controlador LCD
-- [ ] Controlador Painel
+- [X] Controlador LCD
 - [X] Decodificador BCD-ASCII
 - [X] Decodificador BCD-STRING
 - [X] Contador Decresencente
-- [ ] Contador Up/Down
+- [X] Contador Up/Down
 - [X] Divisor de Frequência
-- [ ] Lógica NL - Comparador
-- [ ] Debounce
-- [ ] Lógica On/Off
-- [ ] Monoestável
+- [X] Lógica NL - Comparador
+- [X] Debounce
+- [X] Lógica On/Off
+- [X] Monoestável
 ## C1 - Interfaces de Hardware
 
 Sãoc lientes de instaciação dos Controladores de Hardware.
@@ -48,7 +47,7 @@ Lista de interfaces de hardware que já foram implementados ou que ainda estão 
 - [x] Chave
 - [X] LCD
 - [X] Buzzer
-- [ ] Oscilador
+- [X] Oscilador
 ## C1 - Controladores de Hardware
 
 São utilizados pelos blocos funcionais para acessar os Periféricos.
