@@ -76,4 +76,4 @@ São utilizados pelos blocos funcionais para controlar os Periféricos de C1.
 
 Lista de controladores de hardware que foram utilizados do framework:
 
-- [x] mkl_
+- [x] mkl_TPMPWM
