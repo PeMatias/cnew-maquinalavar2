@@ -59,7 +59,7 @@ Lista de controladores de hardware que já foram implementados ou que ainda est�
 - [x] mkl_PITPeriodicInterrupt
 - [X] mkl_LCDI2C
 
-## C2 - Classes Digitais
+## C2 - Blocos Funcionais
 Os blocos funcionais são aqueles que compõem a classe digital do sistema no nível mais alto do Módulo de Controle.
 
 Lista de blocos funcionais que já foram implementados ou que estão sendo implementados na caminhada C2 :
