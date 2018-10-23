@@ -38,7 +38,7 @@ Lista de blocos funcionais que já foram implementados ou que estão sendo imple
 - [X] Monoestável
 ## C1 - Interfaces de Hardware
 
-Sãoc lientes de instaciação dos Controladores de Hardware.
+São clientes de instanciação dos Controladores de Hardware.
 
 Lista de interfaces de hardware que já foram implementados ou que ainda estão sendo trabalhados:
 
@@ -58,3 +58,22 @@ Lista de controladores de hardware que já foram implementados ou que ainda est�
 - [x] mkl_TPMDelay
 - [x] mkl_PITPeriodicInterrupt
 - [X] mkl_LCDI2C
+
+## C2 - Classes Digitais
+Os blocos funcionais são aqueles que compõem a classe digital do sistema no nível mais alto do Módulo de Controle.
+
+Lista de blocos funcionais que já foram implementados ou que estão sendo implementados na caminhada C2 :
+
+## C2 - Interfaces de Hardware
+
+São clientes de instanciação dos Controladores de Hardware.
+
+Lista de dispositivos externos de hardware que foram implementados na Caminhada 2:
+
+## C2 - Controladores de Hardware
+
+São utilizados pelos blocos funcionais para controlar os Periféricos de C1.
+
+Lista de controladores de hardware que foram utilizados do framework:
+
+- [x] mkl_
