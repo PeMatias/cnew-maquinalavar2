@@ -63,19 +63,28 @@ Lista de controladores de hardware que já foram implementados ou que ainda est�
 Os blocos funcionais são aqueles que compõem a classe digital do sistema no nível mais alto do Módulo de Controle.
 
 Lista de blocos funcionais que já foram implementados ou que estão sendo implementados na caminhada C2 :
+- [X] Monitor (H6,H7,H8)
+- [X] Decodificador de Endereços
+- [X] Contador de Programas
+- [X] Memória 16x32
+- [X] Registrador de Instrução
+- [X] Controlador Mestre de Busca e Execução
+- [X] Controlador Escravo
+
 
 ## C2 - Interfaces de Hardware
 
 São clientes de instanciação dos Controladores de Hardware.
 
 Lista de dispositivos externos de hardware que foram implementados na Caminhada 2:
-
+- [X] GiroControle
 ## C2 - Controladores de Hardware
 
 São utilizados pelos blocos funcionais para controlar os Periféricos de C2.
 
 Lista de controladores de hardware que foram utilizados do framework:
 
-- [ ] mkl_TPMPWM
-- [ ] mkl_UARTPort
-- [ ] mkl_UARTInterrupt
+- [X] mkl_HC06BluetoothSlave
+- [X] mkl_TPMPWM
+- [X] mkl_UARTPort
+- [X] mkl_UARTInterrupt
