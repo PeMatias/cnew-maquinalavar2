@@ -2,7 +2,7 @@
 
 Implementação de um protótipo de máquina de lavar controlada remotamente por bluetooth, microprocessada com ARM Cortex-M0+, usando C++.
 
-**Status**: Em desenvolvimento
+**Status**: Concluído
 
 # Arquitetura do Sistema
 
